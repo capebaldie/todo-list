@@ -45,7 +45,7 @@ const MainPage = () => {
   //for adding new task
   const addTask = () => {
     let num = todo.length + 1;
-    setTodo([...todo, { id: num, title: task, status: false }]);
+    task && setTodo([...todo, { id: num, title: task, status: false }]);
     setTask("");
   };
 
