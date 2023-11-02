@@ -10,30 +10,30 @@ const Todo = ({
   setUpdatedTask,
 }) => {
   return (
-    <main className="flex flex-col bg-gray-200 m-4 p-4  rounded-lg gap-4">
-      <div className=" flex items-center relative">
+    <main className="flex flex-col justify-between bg-gray-100 shadow p-4 rounded-md gap-4">
+      <div className=" flex items-center h-full relative">
         <p
           className={`${
             status ? "line-through opacity-50 " : ""
-          } w-[90%]  capitalize`}
+          } w-[92%]  capitalize`}
         >
           {title}
         </p>
         <RiCheckboxCircleFill
           onClick={() => handleCheck(id)}
           className={`${
-            status ? "text-green-400" : "text-white"
-          } h-6 w-auto absolute right-0`}
+            status ? "text-green-400" : "text-gray-300 hover:text-gray-400"
+          } h-6 w-auto absolute right-0 cursor-pointer `}
         />
       </div>
-      <div className=" flex gap-4 items-center justify-between">
+      <div className=" flex gap-4 pt-1 items-center justify-between">
         <button
           onClick={() => {
             deleteTask(id);
           }}
           className={`${
             status ? "w-full" : "w-52"
-          } bg-red-300 border border-red-400 px-3 py-1 rounded-lg hover:bg-red-400 transition duration-200 ease-in-out`}
+          } bg-red-400 border border-red-400 px-3 py-1 rounded-md hover:bg-red-500 transition duration-200 ease-in-out`}
         >
           Delete
         </button>
@@ -46,7 +46,7 @@ const Todo = ({
                 status: status,
               });
             }}
-            className="bg-sky-300 border border-sky-500 px-3 w-52 py-1 rounded-lg hover:bg-sky-500 transition duration-200 ease-in-out"
+            className="bg-sky-400 border border-sky-400 px-3 w-52 py-1 rounded-md hover:bg-sky-500 transition duration-200 ease-in-out"
           >
             Edit
           </button>

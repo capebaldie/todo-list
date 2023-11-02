@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import AddTask from "./AddTask";
 import Todo from "./Todo";
 import UpdateTask from "./UpdateTask";
+import Layout from "./Layout";
 
 const MainPage = () => {
   //toLocaleString method returns the name of the day of the week, long indicates full length
@@ -63,37 +64,39 @@ const MainPage = () => {
 
   return (
     <>
-      <div className="bg-orange-500 h-14 flex items-center justify-start">
-        <p className="ml-4">{day}</p>
+      <div className="bg-orange-500 sticky top-0 h-14 px-6 sm:px-[20rem] flex items-center justify-start">
+        <p className="text-white font-medium text-base sm:text-lg">
+          It's {day} What do you want to do today ?
+        </p>
       </div>
       {/* if there is no update then show normal input else show editable input */}
-      {!updatedTask ? (
-        <AddTask task={task} addTask={addTask} setTask={setTask} />
-      ) : (
-        <UpdateTask
-          updatedTask={updatedTask}
-          setUpdatedTask={setUpdatedTask}
-          updateTask={updateTask}
-        />
-      )}
-      <p className="text-center font-medium text-xl my-2">
-        What do you want to do today ?
-      </p>
-      <div className="grid grid-flow-row-dense grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:mx-6">
-        {todo
-          .sort((a, b) => (a.id > b.id ? 1 : -1))
-          .map((t, i) => (
-            <Todo
-              key={i}
-              id={t.id}
-              title={t.title}
-              status={t.status}
-              handleCheck={handleCheck}
-              deleteTask={deleteTask}
-              setUpdatedTask={setUpdatedTask}
-            />
-          ))}
-      </div>
+
+      <Layout>
+        {!updatedTask ? (
+          <AddTask task={task} addTask={addTask} setTask={setTask} />
+        ) : (
+          <UpdateTask
+            updatedTask={updatedTask}
+            setUpdatedTask={setUpdatedTask}
+            updateTask={updateTask}
+          />
+        )}
+        <div className="grid grid-flow-row-dense grid-cols-1 sm:grid-cols-2 gap-8">
+          {todo
+            .sort((a, b) => (a.id > b.id ? 1 : -1))
+            .map((t, i) => (
+              <Todo
+                key={i}
+                id={t.id}
+                title={t.title}
+                status={t.status}
+                handleCheck={handleCheck}
+                deleteTask={deleteTask}
+                setUpdatedTask={setUpdatedTask}
+              />
+            ))}
+        </div>
+      </Layout>
     </>
   );
 };
